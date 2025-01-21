@@ -95,20 +95,6 @@ if (!localStorage.getItem('welcomeMessageShown')) {
     localStorage.setItem('welcomeMessageShown', 'true');
 }
 
-// 12. تشغيل فيديو تلقائيًا عند ظهوره على الشاشة
-
-const videos = document.querySelectorAll('video');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.play();
-        } else {
-            entry.target.pause();
-        }
-    });
-}); 
-
-videos.forEach(video => observer.observe(video));
 
 // 13. تعطيل النقر بزر الفأرة الأيمن
 document.addEventListener('contextmenu', (e) => {
@@ -119,23 +105,6 @@ document.addEventListener('contextmenu', (e) => {
 // 14. الكشف عن نسخ النصوص
 document.addEventListener('copy', () => {
     console.log('تم نسخ النصوص من الموقع.');
-});
-
-// 15. زر العودة إلى الأعلى
-const backToTop = document.createElement('button');
-backToTop.textContent = '↑';
-backToTop.style.position = 'fixed';
-backToTop.style.bottom = '20px';
-backToTop.style.right = '20px';
-backToTop.style.display = 'none';
-document.body.appendChild(backToTop);
-
-backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-window.addEventListener('scroll', () => {
-    backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
 });
 
 // 16. منع تكرار الإرسال في النماذج
@@ -159,20 +128,6 @@ document.querySelectorAll('input, textarea').forEach(field => {
     });
 });
 
-// 18. عرض رسالة عند انتهاء العد التنازلي
-const countdownElement = document.getElementById('countdown');
-if (countdownElement) {
-    let countdown = 10; // عدد الثواني
-    const interval = setInterval(() => {
-        countdownElement.textContent = countdown;
-        countdown--;
-        if (countdown < 0) {
-            clearInterval(interval);
-            alert('انتهى العد التنازلي!');
-        }
-    }, 1000);
-}
-
 // 19. تعطيل الحقول أثناء التحميل
 document.addEventListener('DOMContentLoaded', () => {
     const fields = document.querySelectorAll('input, textarea, select, button');
@@ -180,6 +135,3 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => fields.forEach(field => field.disabled = false), 2000);
 });
 
-// 20. تغيير خلفية الصفحة بناءً على الوقت
-const hour = new Date().getHours();
-document.body.style.backgroundColor = hour < 12 ? '#FFD700' : '##323232';
