@@ -1,0 +1,9 @@
+img{
+    width: 63%;
+    height: 42%;
+    border: 2px solid var(--color);
+    border-radius: 5px;
+}
+img:hover{
+    cursor: pointer;
+}
